@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -38,10 +37,71 @@ const ContactSection = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission logic here
+    
+    // Validate required fields
+    if (!formData.name || !formData.phone || !formData.serviceType || !formData.address || !formData.timeSlot) {
+      alert('Please fill in all required fields marked with *');
+      return;
+    }
+
+    // Phone number validation
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      alert('Please enter a valid 10-digit phone number');
+      return;
+    }
+
+    // Email validation if provided
+    if (formData.email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        alert('Please enter a valid email address');
+        return;
+      }
+    }
+
+    try {
+      const response = await fetch('https://aiims-email.vercel.app/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email || 'No email provided',
+          serviceType: formData.serviceType,
+          address: formData.address,
+          timeSlot: formData.timeSlot,
+          message: formData.message || 'No additional message'
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send email');
+      }
+
+      alert('Thank you for contacting us! We will get back to you soon.');
+      // Reset form
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        serviceType: '',
+        address: '',
+        timeSlot: '',
+        message: ''
+      });
+      setCurrentStep(1);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send message. Please try again or contact us directly at MyAiimscare@gmail.com');
+    }
   };
 
   const renderStep = () => {
@@ -184,7 +244,7 @@ const ContactSection = () => {
                 <div className="flex justify-between mt-8">
                   <Button
                     type="button"
-                    variant="outline"
+                    className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-100"
                     onClick={prevStep}
                     disabled={currentStep === 1}
                   >

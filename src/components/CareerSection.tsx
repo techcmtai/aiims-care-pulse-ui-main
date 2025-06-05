@@ -8,13 +8,10 @@ interface FormData {
   fullName: string;
   fatherName: string;
   mobileNumber: string;
-  passportPhoto: File | null;
   permanentAddress: string;
   currentAddress: string;
   aadharNumber: string;
-  registrationCertificate: File | null;
   registrationNumber: string;
-  resume: File | null;
   yearsExperience: string;
   fieldOfExpertise: string;
 }
@@ -28,13 +25,10 @@ const CareerSection = () => {
     fullName: '',
     fatherName: '',
     mobileNumber: '',
-    passportPhoto: null,
     permanentAddress: '',
     currentAddress: '',
     aadharNumber: '',
-    registrationCertificate: null,
     registrationNumber: '',
-    resume: null,
     yearsExperience: '',
     fieldOfExpertise: ''
   });
@@ -48,10 +42,9 @@ const CareerSection = () => {
     if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required';
     if (!formData.fatherName.trim()) newErrors.fatherName = "Father's name is required";
     if (!formData.mobileNumber.trim()) newErrors.mobileNumber = 'Mobile number is required';
-    if (!formData.passportPhoto) newErrors.passportPhoto = 'Passport size photo is required';
     if (!formData.permanentAddress.trim()) newErrors.permanentAddress = 'Permanent address is required';
     if (!formData.aadharNumber.trim()) newErrors.aadharNumber = 'Aadhar card number is required';
-    if (!formData.resume) newErrors.resume = 'Resume/CV is required';
+    if (!formData.registrationNumber.trim()) newErrors.registrationNumber = 'Registration number is required';
     if (!formData.yearsExperience.trim()) newErrors.yearsExperience = 'Years of experience is required';
     if (!formData.fieldOfExpertise.trim()) newErrors.fieldOfExpertise = 'Field of expertise is required';
 
@@ -68,34 +61,6 @@ const CareerSection = () => {
     // Mobile number validation
     if (formData.mobileNumber && !/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
       newErrors.mobileNumber = 'Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9';
-    }
-
-    // File validation
-    if (formData.passportPhoto) {
-      const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-      if (!allowedImageTypes.includes(formData.passportPhoto.type)) {
-        newErrors.passportPhoto = 'Photo must be in JPG, JPEG, or PNG format';
-      } else if (formData.passportPhoto.size > 2 * 1024 * 1024) {
-        newErrors.passportPhoto = 'Photo size must be less than 2MB';
-      }
-    }
-
-    if (formData.registrationCertificate) {
-      const allowedDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!allowedDocTypes.includes(formData.registrationCertificate.type)) {
-        newErrors.registrationCertificate = 'Certificate must be in PDF, DOC, or DOCX format';
-      } else if (formData.registrationCertificate.size > 5 * 1024 * 1024) {
-        newErrors.registrationCertificate = 'Certificate size must be less than 5MB';
-      }
-    }
-
-    if (formData.resume) {
-      const allowedDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!allowedDocTypes.includes(formData.resume.type)) {
-        newErrors.resume = 'Resume must be in PDF, DOC, or DOCX format';
-      } else if (formData.resume.size > 5 * 1024 * 1024) {
-        newErrors.resume = 'Resume size must be less than 5MB';
-      }
     }
 
     setErrors(newErrors);
@@ -123,15 +88,15 @@ const CareerSection = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = e.target;
-    if (files && files[0]) {
-      setFormData(prev => ({ ...prev, [name]: files[0] }));
+    // const { name, files } = e.target;
+    // if (files && files[0]) {
+    //   setFormData(prev => ({ ...prev, [name]: files[0] }));
       
-      // Clear error when user selects a file
-      if (errors[name]) {
-        setErrors(prev => ({ ...prev, [name]: '' }));
-      }
-    }
+    //   // Clear error when user selects a file
+    //   if (errors[name]) {
+    //     setErrors(prev => ({ ...prev, [name]: '' }));
+    //   }
+    // }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -142,17 +107,21 @@ const CareerSection = () => {
         // Create FormData for submission
         const submitData = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
-          if (value instanceof File) {
-            submitData.append(key, value);
-          } else if (value) {
+          // if (value instanceof File) {
+          //   submitData.append(key, value);
+          // } else if (value) {
+          if (value) {
             submitData.append(key, value);
           }
         });
 
         // Send to email
-        const response = await fetch('/api/send-career-email', {
+        const response = await fetch('https://aiims-email.vercel.app/send-career-mail', {
           method: 'POST',
-          body: submitData
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
         });
 
         if (!response.ok) {
@@ -166,13 +135,10 @@ const CareerSection = () => {
           fullName: '',
           fatherName: '',
           mobileNumber: '',
-          passportPhoto: null,
           permanentAddress: '',
           currentAddress: '',
           aadharNumber: '',
-          registrationCertificate: null,
           registrationNumber: '',
-          resume: null,
           yearsExperience: '',
           fieldOfExpertise: ''
         });
@@ -253,22 +219,6 @@ const CareerSection = () => {
                 </div>
 
                 <div className="md:col-span-2">
-                  <Label htmlFor="passportPhoto" className="text-sm font-medium text-gray-700">
-                    Passport Size Photo <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    type="file"
-                    id="passportPhoto"
-                    name="passportPhoto"
-                    onChange={handleFileChange}
-                    accept=".jpg,.jpeg,.png"
-                    className={`mt-1 ${errors.passportPhoto ? 'border-red-500' : ''}`}
-                  />
-                  <p className="mt-1 text-sm text-gray-500">Accepts JPG, PNG, JPEG formats (max 2MB)</p>
-                  {errors.passportPhoto && <p className="mt-1 text-sm text-red-600">{errors.passportPhoto}</p>}
-                </div>
-
-                <div className="md:col-span-2">
                   <Label htmlFor="permanentAddress" className="text-sm font-medium text-gray-700">
                     Permanent Address <span className="text-red-500">*</span>
                   </Label>
@@ -325,22 +275,6 @@ const CareerSection = () => {
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2">
-                  <Label htmlFor="registrationCertificate" className="text-sm font-medium text-gray-700">
-                    Registration Certificate
-                  </Label>
-                  <Input
-                    type="file"
-                    id="registrationCertificate"
-                    name="registrationCertificate"
-                    onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx"
-                    className={`mt-1 ${errors.registrationCertificate ? 'border-red-500' : ''}`}
-                  />
-                  <p className="mt-1 text-sm text-gray-500">Accepts PDF, DOC, DOCX formats (max 5MB)</p>
-                  {errors.registrationCertificate && <p className="mt-1 text-sm text-red-600">{errors.registrationCertificate}</p>}
-                </div>
-
                 <div>
                   <Label htmlFor="registrationNumber" className="text-sm font-medium text-gray-700">
                     Registration Number
@@ -371,22 +305,6 @@ const CareerSection = () => {
                     className={`mt-1 ${errors.yearsExperience ? 'border-red-500 focus:ring-red-500' : 'focus:ring-blue-500'}`}
                   />
                   {errors.yearsExperience && <p className="mt-1 text-sm text-red-600">{errors.yearsExperience}</p>}
-                </div>
-
-                <div className="md:col-span-2">
-                  <Label htmlFor="resume" className="text-sm font-medium text-gray-700">
-                    Resume/CV <span className="text-red-500">*</span>
-                  </Label>
-                  <Input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx"
-                    className={`mt-1 ${errors.resume ? 'border-red-500' : ''}`}
-                  />
-                  <p className="mt-1 text-sm text-gray-500">Accepts PDF, DOC, DOCX formats (max 5MB)</p>
-                  {errors.resume && <p className="mt-1 text-sm text-red-600">{errors.resume}</p>}
                 </div>
 
                 <div className="md:col-span-2">
