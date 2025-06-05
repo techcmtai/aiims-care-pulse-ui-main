@@ -34,15 +34,15 @@ const Footer = () => {
             <div className="space-y-2">
               <p className="flex items-center text-gray-300">
                 <span className="font-semibold text-blue-400 mr-2">📞 Emergency:</span>
-                <a href="tel:9560028504" className="hover:text-blue-400 transition-colors">8766382620</a>
+                <a href="tel:8766382620" className="hover:text-blue-400 transition-colors">8766382620</a>
               </p>
               <p className="flex items-center text-gray-300">
                 <span className="font-semibold text-blue-400 mr-2">📞 General:</span>
-                <a href="tel:8766382620" className="hover:text-blue-400 transition-colors">9136817423</a>
+                <a href="tel:9560028504" className="hover:text-blue-400 transition-colors">9560028504</a>
               </p>
               <p className="flex items-center text-gray-300">
                 <span className="font-semibold text-blue-400 mr-2">✉️ Email:</span>
-                <a href="mailto:MyAiimscare@gmail.com" className="hover:text-blue-400 transition-colors">MyAiimscare@gmail.com</a>
+                <a href="mailto:MyAiimscare@gmail.com" className="hover:text-blue-400 transition-colors">aiimscare24@gmail.com</a>
               </p>
             </div>
           </div>

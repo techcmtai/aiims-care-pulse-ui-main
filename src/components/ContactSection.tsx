@@ -336,8 +336,16 @@ const ContactSection = () => {
                 <CardTitle>Service Areas</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="bg-gray-100 h-48 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Service Area Map</p>
+                <div className="w-full h-[300px] rounded-lg overflow-hidden">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3598.1434471955645!2d85.03801347539502!3d25.60014917745374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDM2JzAwLjUiTiA4NcKwMDInMjYuMSJF!5e0!3m2!1sen!2sin!4v1749134349401!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
                 <p className="text-sm text-gray-600 mt-4">
                   We currently serve Delhi NCR, Mumbai, Bangalore, and surrounding areas. 
