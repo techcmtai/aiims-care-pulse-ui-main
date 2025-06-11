@@ -11,15 +11,22 @@ import GallerySection from '@/components/GallerySection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { Helmet } from 'react-helmet-async';
 
 const Index = () => {
   return (
-    <Layout
-      title="Home"
-      description="AIIMS Care provides professional 24/7 home nursing services, medical care, and healthcare solutions. Expert medical staff, personalized care plans, and emergency support."
-      keywords="home nursing, medical care, healthcare services, 24/7 medical support, AIIMS Care"
-      type="website"
-    >
+    <> 
+    <Helmet>
+      <title>AIIMS Care - Professional Home Nursing Services</title>
+      <meta name="description" content="AIIMS Care provides professional 24/7 home nursing services, medical care, and healthcare solutions. Expert medical staff, personalized care plans, and emergency support." />
+      <meta name="keywords" content="home nursing, medical care, healthcare services, 24/7 medical support, AIIMS Care" />
+      <meta name="author" content="AIIMS Care" />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href="https://www.aiimscare.com" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.aiimscare.com" />
+    </Helmet>
+    <Layout>
       <Header />
       <article className="min-h-screen">
         <section aria-labelledby="hero-heading" className="relative">
@@ -66,6 +73,7 @@ const Index = () => {
       <Footer />
       <WhatsAppButton aria-label="Contact us on WhatsApp" />
     </Layout>
+    </>
   );
 };
 
