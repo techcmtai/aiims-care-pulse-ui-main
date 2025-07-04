@@ -54,7 +54,7 @@ const Header = () => {
               <Link to="/" className="block">
                 <img 
                   src="/lovable-uploads/348ba9ca-fcc5-4719-94d3-5cc0a00c4c4d.png" 
-                  alt="AIIMS Care Logo" 
+                  alt="Injection service at home in Patna - AIIMS Care Logo" 
                   className="h-10 w-auto"
                 />
               </Link>
@@ -90,9 +90,15 @@ const Header = () => {
               <Phone className="h-4 w-4 mr-1" />
               <span className="text-sm font-medium">8766382620</span>
             </a>
-            <Button className="bg-green-600 hover:bg-green-700">
-              Book Now
-            </Button>
+            <a
+              href="https://wa.me/918766382620"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="bg-green-600 hover:bg-green-700" aria-label="Book Now on WhatsApp">
+                Book Now
+              </Button>
+            </a>
           </div>
 
           {/* Mobile menu button */}

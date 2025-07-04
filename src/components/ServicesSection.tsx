@@ -189,9 +189,15 @@ const ServicesSection = () => {
 
         <div className="text-center mt-16 animate-fade-in">
           <p className="text-gray-600 mb-6">Need a custom care plan? We're here to help.</p>
-          <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-            Consult Our Team
-          </button>
+          <a
+            href="https://wa.me/918766382620"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105" aria-label="Consult Our Team on WhatsApp">
+              Consult Our Team
+            </button>
+          </a>
         </div>
       </div>
     </section>

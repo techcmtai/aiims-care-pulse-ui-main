@@ -16,15 +16,15 @@ const AboutSection = () => {
   }];
   const images = [{
     src: "/images/5.png",
-    alt: "Professional nurse providing care",
+    alt: "Injection service at home - Professional nurse providing care",
     caption: "Certified nursing professionals"
   }, {
     src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop&auto=format",
-    alt: "Home medical equipment setup",
+    alt: "Dressing service for wounds at home - Home medical equipment setup",
     caption: "Advanced medical equipment"
   }, {
     src: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop&auto=format",
-    alt: "Elderly care at home",
+    alt: "One-time nurse visit at home - Elderly care at home",
     caption: "Compassionate elderly care"
   }];
   return <section id="about" className="py-20 bg-white">

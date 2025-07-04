@@ -7,32 +7,32 @@ const GallerySection = () => {
   const galleryImages = [
     {
       src: "/lovable-uploads/738bddb7-f840-4ee1-876f-52e141f00bb4.png",
-      alt: "Compassionate care for elderly patients",
+      alt: "Nurse for injection at home in Patna - Compassionate care for elderly patients",
       caption: "Professional home care assistance"
     },
     {
       src: "/lovable-uploads/03be5b02-c838-4b06-b58f-436c153608c1.png", 
-      alt: "Family support and care",
+      alt: "Wound dressing at home in Patna - Family support and care",
       caption: "Bringing families together through care"
     },
     {
       src: "/lovable-uploads/ab50e137-0fa1-4b94-abe8-6740a0ef5e19.png",
-      alt: "Home healthcare environment",
+      alt: "Home visit nurse for dressing in Patna - Home healthcare environment",
       caption: "Quality care in the comfort of home"
     },
     {
       src: "/images/5.png",
-      alt: "Professional nursing care",
+      alt: "Injection at home near me - Professional nursing care",
       caption: "Certified medical professionals"
     },
     {
       src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop&auto=format",
-      alt: "Medical equipment setup",
+      alt: "Wound care service at home - Medical equipment setup",
       caption: "Advanced medical equipment"
     },
     {
       src: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop&auto=format",
-      alt: "Elderly care services",
+      alt: "Nurse visit for injection - Elderly care services",
       caption: "Specialized elderly care"
     }
   ];
@@ -83,7 +83,7 @@ const GallerySection = () => {
               </button>
               <img 
                 src={selectedImage} 
-                alt="Gallery image"
+                alt="At-home medical injection and wound dressing service in Patna - Gallery image"
                 className="max-w-full max-h-full object-contain rounded-lg"
               />
             </div>

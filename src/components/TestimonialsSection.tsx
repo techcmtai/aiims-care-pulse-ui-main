@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -81,7 +80,7 @@ const TestimonialsSection = () => {
                 <div className="flex-shrink-0">
                   <img
                     src={testimonials[currentTestimonial].image}
-                    alt={testimonials[currentTestimonial].name}
+                    alt={`Nurse for injection at home in Patna - Testimonial from ${testimonials[currentTestimonial].name}`}
                     className="w-20 h-20 rounded-full object-cover border-4 border-blue-100"
                   />
                 </div>

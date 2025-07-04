@@ -12,6 +12,24 @@ const ImageCarousel = () => {
     "/images/5.png"
   ];
 
+  const keywords = [
+    "Injection service at home",
+    "Wound dressing at home",
+    "Nurse for injection at home",
+    "Home visit nurse for dressing",
+    "Injection at home near me",
+    "Wound care service at home",
+    "Nurse visit for injection",
+    "One-time nurse visit at home",
+    "At-home medical injection service",
+    "Dressing service for wounds at home",
+    "Injection service at home in Patna",
+    "Wound dressing at home in Patna",
+    "Home visit nurse in Patna",
+    "Medical dressing at home Patna",
+    "Nurse for injection at home Patna"
+  ];
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -25,7 +43,7 @@ const ImageCarousel = () => {
       <div className="aspect-square overflow-hidden rounded-2xl shadow-2xl">
         <img
           src={images[currentIndex]}
-          alt={`Medical care ${currentIndex + 1}`}
+          alt={keywords[currentIndex % keywords.length]}
           className="w-full h-full object-cover transition-all duration-1000 ease-in-out transform hover:scale-105"
         />
       </div>
